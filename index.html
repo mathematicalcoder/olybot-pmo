@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PMO problem retriever</title>
+    </head>
+    <body>
+        <h1>PMO problem retriever</h1>
+        <p>
+            <em>Notes: You can click on the problem image to access the problem and its LaTeX source. Note that not all PMO problems are up on AoPS.</em>
+        </p>
+        <p>
+            Retrieve problem: <input type="text" id="iter" placeholder="27th"> PMO Area Stage, problem <input type="text" id="num" placeholder="I.1">
+            <button onclick="getProblem()">Retrieve</button>
+        </p>
+        <a id="problemLink" href="#"><img src="" id="problemImg" width="90%"></a>
+    </body>
+    <script>
+        function getProblem() {
+            const inputs = [document.getElementById("iter").value, document.getElementById("num").value]
+            const img = document.getElementById("problemImg")
+            const link = document.getElementById("problemLink")
+            let url = `https://ggim.me/${inputs[0]}-philippine-mo-area-stage-${inputs[1]}`
+            img.setAttribute("src", url)
+            link.setAttribute("href", url)
+        }
+    </script>
+</html>

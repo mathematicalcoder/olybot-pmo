@@ -8,22 +8,39 @@
     <body>
         <h1>PMO problem retriever</h1>
         <p>
-            <em>Notes: You can click on the problem image to access the problem and its LaTeX source. Note that not all PMO problems are up on AoPS.</em>
+            <em>Notes: <ul>
+                <li>You can click on the problem image or the link to access the problem and its LaTeX source.</li>
+                <li>Not all PMO problems are up on AoPS; problems are still being collected there.</li>
+                <li>The problem retrieval relies heavily on the <a href="https://ggim.me/">olympiad bot</a>.</li>
+            </ul></em>
         </p>
+        <hr>
         <p>
-            Retrieve problem: <input type="text" id="iter" placeholder="27th"> PMO Area Stage, problem <input type="text" id="num" placeholder="I.1">
+            Retrieve problem: <input type="text" id="iter" placeholder="27th"> <select id="contest">
+                <option value="philippine-mo-area-stage">PMO Area Stage</option>
+                <option value="philippine-mo-qualifying-stage">PMO Qualifying Stage</option>
+            </select>, problem <input type="text" id="num" placeholder="I.1">
             <button onclick="getProblem()">Retrieve</button>
         </p>
-        <a id="problemLink" href="#"><img src="" id="problemImg" width="90%"></a>
+        <p>
+            Problem:<br>
+            <a id="problemLink" href="#"><img src="" id="problemImg" width="70%"></a>
+        </p>
+        <p>
+            Problem link: <a id="problemLink2" href="#"></a>
+        </p>
     </body>
     <script>
         function getProblem() {
-            const inputs = [document.getElementById("iter").value, document.getElementById("num").value]
+            const inputs = [document.getElementById("iter").value, document.getElementById("contest").value, document.getElementById("num").value]
             const img = document.getElementById("problemImg")
             const link = document.getElementById("problemLink")
-            let url = `https://ggim.me/${inputs[0]}-philippine-mo-area-stage-${inputs[1]}`
+            const link2 = document.getElementById("problemLink2")
+            let url = `https://ggim.me/${inputs[0]}-${inputs[1]}-${inputs[2]}`
             img.setAttribute("src", url)
             link.setAttribute("href", url)
+            link2.setAttribute("href", url)
+            link2.innerHTML = url
         }
     </script>
 </html>
